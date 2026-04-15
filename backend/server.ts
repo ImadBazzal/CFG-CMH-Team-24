@@ -11,8 +11,11 @@ dotenv.config();
 const app = express();
 
 //enable cors for frontend requests
+const allowedOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(',').map(o => o.trim())
+    : ['http://localhost:3000'];
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: allowedOrigins,
     credentials: true
 }));
 
